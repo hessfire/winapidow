@@ -21,9 +21,6 @@ private:
                 button_handlers[wmId]();
             }
 
-            //if (IsDlgButtonChecked(hWnd, wmId))
-            //    CheckDlgButton(hWnd, wmId, BST_CHECKED);
-
             if (checkbox_handlers.find(wmId) != checkbox_handlers.end() && checkbox_handlers[wmId] != nullptr) {
                 checkbox_handlers[wmId]();
             }
@@ -32,7 +29,7 @@ private:
         }
         case WM_CTLCOLORSTATIC:
         {
-            // HDC hdcStatic = (HDC)wParam;
+             //HDC hdcStatic = (HDC)wParam;
              //SetBkMode(hdcStatic, TRANSPARENT);
             return (LRESULT)GetStockObject(COLOR_WINDOW + 1);
         }
@@ -144,10 +141,6 @@ public:
 
     HWND add_control(base_control* control_obj)
     {
-        //autostring text = control_obj->get_text();
-        //if (strstr(typeid(control_obj).name(), "button_hidden_class") != 0)
-        //    text = _T("");
-
         HWND control_handle = CreateWindowExW(
             0,
             control_obj->get_control_class_name().c_str(),

@@ -1,0 +1,15 @@
+#pragma once
+#include "../includes.h"
+
+#include "button_control.h"
+#include "label_control.h"
+#include "button_hidden_control.h"
+#include "checkbox_control.h"
+#include "groupbox_control.h"
+#include "combobox_control.h"
+#include "listview_control.h"
+#include "radiobutton_control.h"
+#include "textbox_control.h"
+#include "progress_bar_control.h"
+#include "horizontal_separator_control.h"
+#include "vertical_separator_control.h"

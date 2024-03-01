@@ -32,7 +32,7 @@ test_button->add_click_handler([&]() {
 ```
 ***
 
-## about modifying control info
+## about modifying controls
 ```cpp
 //you need to add control (wnd->add_control) before you can modify a control 
 combobox->add_item(L"test item");
@@ -42,21 +42,21 @@ combobox->add_item(L"test item");
 ## starting message loop
 
 ```cpp
-	wnd->show();
-	wnd->start_message_loop();
-    // you can also add lamda in start_message_loop to run your code in message loop
+wnd->show();
+wnd->start_message_loop();
+// you can also add lamda in start_message_loop to run your code in message loop
 
-    //example: 
-    wnd->start_message_loop([&]() {
-        //this code will be executed in message loop, though i recommend you to create a separate thread for your own code
-        //it is only used for running your own code and not overriding message handler 
-    });
+//example: 
+wnd->start_message_loop([&]() {
+    //this code will be executed in message loop, though i recommend you to create a separate thread for your own code
+    //it is only used for running your own code and not overriding message handler 
+});
 ```
 ***
 
-## adding your own control
+## creating your own control
 
-1. go to `winapidow/controls` and create a new file for your control\n
+1. go to `winapidow/controls` and create a new file for your control
 2. include `base_control.h` from current folder so you can inherit from it 
 3. create a new class, make it inherit from "base_class"
 4. include your control file in `winapidow/controls/all_controls.h`

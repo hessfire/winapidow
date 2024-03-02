@@ -1,9 +1,5 @@
 # progressbar control
 
-listview is kinda broken, i'll fix it later
-
-you can't really use multiple columns with default control apis as of now
-
 ## apis
 
 ```cpp
@@ -14,8 +10,10 @@ autostring get_item_by_index(int index, int column = 0);
 bool item_exists_at_index(int index);
 void delete_item_at_index(int index);
 int item_count();
+int item_count_in_column(int column_index);
 void add_item(autostring text, int column = 0);
 void clear_all_values();
+void clear_column(int column_index);
 void add_click_handler(std::function<void(LPNMITEMACTIVATE)> on_click);
 ```
 ***

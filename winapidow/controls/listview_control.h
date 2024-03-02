@@ -91,20 +91,19 @@ public:
 
         if (column == 0) 
         {
-            LVITEM lvItem;
-            lvItem.mask = LVIF_TEXT;
-            lvItem.iItem = item_count;
-            lvItem.iSubItem = 0;
-            lvItem.pszText = const_cast<autochar*>(text.c_str());
+            LVITEM item;
+            item.mask = LVIF_TEXT;
+            item.iItem = item_count;
+            item.iSubItem = 0;
+            item.pszText = const_cast<autochar*>(text.c_str());
 
-            ListView_InsertItem(this->get_handle(), &lvItem);
+            ListView_InsertItem(this->get_handle(), &item);
         }
         else
         {
             ListView_SetItemText(this->get_handle(), this->item_count_in_column(column), column, const_cast<autochar*>(text.c_str()));
         }
     }
-
 
     void clear_all_values() {
         ListView_DeleteAllItems(this->get_handle());

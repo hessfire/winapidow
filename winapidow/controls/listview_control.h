@@ -15,24 +15,24 @@ public:
             };
     }
 
-    void insert_column(int columnIndex, LPCWSTR columnName, int columnWidth = 100) {
-        LVCOLUMN lvColumn;
-        lvColumn.mask = LVCF_TEXT | LVCF_WIDTH | LVCF_SUBITEM;
-        lvColumn.cx = columnWidth;
-        lvColumn.pszText = const_cast<LPWSTR>(columnName);
-        lvColumn.iSubItem = columnIndex;
-        ListView_InsertColumn(this->get_handle(), columnIndex, &lvColumn);
+    void insert_column(int column_index, autostring column_name, int column_width = 100) {
+        LVCOLUMN column;
+        column.mask = LVCF_TEXT | LVCF_WIDTH | LVCF_SUBITEM;
+        column.cx = column_width;
+        column.pszText = const_cast<autochar*>(column_name.c_str());
+        column.iSubItem = column_index;
+        ListView_InsertColumn(this->get_handle(), column_index, &column);
     }
 
-    void add_column_values(int columnIndex, vector<LPCWSTR> values) {
-        LVITEM lvItem;
+    void add_column_values(int column_index, vector<autostring> values) {
+        LVITEM item;
 
         for (int i = 0; i < values.size(); ++i) {
-            lvItem.mask = LVIF_TEXT;
-            lvItem.iItem = i;
-            lvItem.iSubItem = columnIndex;
-            lvItem.pszText = (wchar_t*)(values[i]);
-            ListView_InsertItem(this->get_handle(), &lvItem);
+            item.mask = LVIF_TEXT;
+            item.iItem = i;
+            item.iSubItem = column_index;
+            item.pszText = const_cast<autochar*>(values[i].c_str());
+            ListView_InsertItem(this->get_handle(), &item);
         }
     }
 
@@ -42,14 +42,14 @@ public:
 
     autostring get_item_by_index(int index, int column = 0)
     {
-        wchar_t buffer[512] = { 0 };
+        autochar buffer[512] = { 0 };
         ListView_GetItemText(this->get_handle(), index, column, buffer, sizeof(buffer) / sizeof(buffer[0]));
         return autostring(buffer);
     }
 
     bool item_exists_at_index(int index) {
-        int itemCount = ListView_GetItemCount(this->get_handle());
-        return (index >= 0 && index < itemCount);
+        int item_count = ListView_GetItemCount(this->get_handle());
+        return (index >= 0 && index < item_count);
     }
 
     void delete_item_at_index(int index) {
@@ -62,13 +62,13 @@ public:
     }
 
     void add_item(autostring text, int column = 0) {
-        LVITEM lvItem;
-        lvItem.mask = LVIF_TEXT;
-        lvItem.iItem = ListView_GetItemCount(this->get_handle());
-        lvItem.iSubItem = column;
-        lvItem.pszText = (wchar_t*)text.c_str();
+        LVITEM item;
+        item.mask = LVIF_TEXT;
+        item.iItem = ListView_GetItemCount(this->get_handle());
+        item.iSubItem = column;
+        item.pszText = const_cast<autochar*>(text.c_str());
 
-        ListView_InsertItem(this->get_handle(), &lvItem);
+        ListView_InsertItem(this->get_handle(), &item);
     }
 
     void clear_all_values() {

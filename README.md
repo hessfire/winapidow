@@ -1,4 +1,4 @@
-# winapidows
+# winapidow
 >a small oop-oriented framework for creating a window using winapi under the hood 
 
 ## creating a window
